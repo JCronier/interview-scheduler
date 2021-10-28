@@ -4,7 +4,7 @@ export default function Empty(props) {
   return (
     <main className="appointment__add">
       <img
-        onClick={props.onAdd}
+        onClick={props.onChange}
         className="appointment__add-button"
         src="images/add.png"
         alt="Add"
