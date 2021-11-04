@@ -1,3 +1,7 @@
+// useApplicationData.js
+
+// Custom hook to keep track of interview data
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 import updateSpots from "../helpers/updateSpots";
@@ -11,11 +15,13 @@ export default function useApplicationData() {
   });
 
   function bookInterview(id, interview) {
+    // Grab appointment object from state
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
     };
 
+    // Copy and update appointments
     const appointments = {
       ...state.appointments,
       [id]: appointment
@@ -29,11 +35,13 @@ export default function useApplicationData() {
   }
 
   function cancelInterview(id) {
+    // Grab appointment object from state
     const appointment = {
       ...state.appointments[id],
       interview: null
     };
 
+    // Copy and update appointments
     const appointments = {
       ...state.appointments,
       [id]: appointment
@@ -43,9 +51,10 @@ export default function useApplicationData() {
       .then(() => {
         const newDays = updateSpots(state, appointments);
         setState(prev => ({ ...prev, appointments, days: newDays }));
-      })
+      });
   }
 
+  // Update
   const setDay = day => setState(prev => ({ ...prev, day }));
   const setData = all => {
     const days = all[0].data;
@@ -54,6 +63,7 @@ export default function useApplicationData() {
     setState(prev => ({ ...prev, days, appointments, interviewers }));
   };
 
+  // Get app data after app renders
   useEffect(() => {
     Promise.all([
       axios.get("/api/days"),

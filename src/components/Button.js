@@ -4,8 +4,7 @@
 
 import React from "react";
 import classNames from "classnames";
-
-import "./Button.scss";
+import "../styles/Button.scss";
 
 export default function Button(props) {
   const label = props.children;

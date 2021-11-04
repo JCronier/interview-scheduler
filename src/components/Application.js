@@ -7,7 +7,7 @@ import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "../h
 import useApplicationData from "../hooks/useApplicationData"
 import DayList from "./DayList";
 import Appointment from "./Appointment";
-import "./Application.scss";
+import "../styles/Application.scss";
 
 export default function Application() {
   // Custom state hook
