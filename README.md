@@ -21,4 +21,4 @@ Install dependencies with `npm install`.
 npm start
 ```
 
-## Running Jest Test Framework
+Enjoy using my app!
