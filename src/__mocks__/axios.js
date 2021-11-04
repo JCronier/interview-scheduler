@@ -1,3 +1,7 @@
+// axios.js
+
+// Mock data for unit testing
+
 const fixtures = {
   days: [
     {

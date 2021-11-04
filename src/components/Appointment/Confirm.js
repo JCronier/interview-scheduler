@@ -1,3 +1,7 @@
+// Confirm.js
+
+// Confirm mode when a user tries to carry out a destructive action
+
 import React from "react";
 import Button from "../Button";
 

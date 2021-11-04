@@ -1,3 +1,7 @@
+// Form.js
+
+// Allows user to create and edit an interview slot
+
 import React, { useState } from "react";
 import Button from "../Button";
 import InterviewerList from "../InterviewerList";
@@ -7,22 +11,27 @@ export default function Form(props) {
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");
 
+  // reset the form data
   const reset = function () {
     setStudent("");
     setInterviewer(null);
   };
 
+  // cancel create/edit interview
   const cancel = function () {
     reset();
     props.onCancel();
-  }
+  };
 
+  // Form data has been entered
   function validate() {
+    // No student name
     if (student === "") {
       setError("Student name cannot be blank");
       return;
     }
 
+    // No interviewer selected
     if (!interviewer) {
       setError("Please choose an interviewer");
       return;
@@ -30,7 +39,7 @@ export default function Form(props) {
 
     setError("");
     props.onSave(student, interviewer);
-  }
+  };
 
   return (
     <main className="appointment__card appointment__card--create">
@@ -47,10 +56,10 @@ export default function Form(props) {
           />
           <section className="appointment__validation">{error}</section>
           <InterviewerList
-          onChange={setInterviewer}
-          interviewers={props.interviewers}
-          value={interviewer}
-        />
+            onChange={setInterviewer}
+            interviewers={props.interviewers}
+            value={interviewer}
+          />
         </form>
       </section>
       <section className="appointment__card-right">

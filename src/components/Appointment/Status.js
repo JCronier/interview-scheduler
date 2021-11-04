@@ -1,3 +1,7 @@
+// Status.js
+
+// Status view when async calls to api server made
+
 import React from "react";
 
 export default function Status(props) {

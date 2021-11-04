@@ -1,12 +1,16 @@
+// Application.js
+
+// Application component
+
 import React from "react";
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "../helpers/selectors";
 import useApplicationData from "../hooks/useApplicationData"
-
-import "./Application.scss";
 import DayList from "./DayList";
 import Appointment from "./Appointment";
+import "./Application.scss";
 
 export default function Application() {
+  // Custom state hook
   const {
     state,
     setDay,
@@ -16,6 +20,7 @@ export default function Application() {
 
   const dailyInterviewers = getInterviewersForDay(state, state.day);
 
+  // Render appointments
   const dailyAppointments = getAppointmentsForDay(state, state.day).map(appointment => {
     const interview = getInterview(state, appointment.interview);
     return (

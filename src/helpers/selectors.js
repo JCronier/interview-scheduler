@@ -1,3 +1,5 @@
+// Selector functions for constructing data arrays for components from state
+
 export function getAppointmentsForDay(state, day) {
   const dayObj = state.days.find(element => element.name === day);
 
@@ -5,6 +7,7 @@ export function getAppointmentsForDay(state, day) {
   return dayObj ? dayObj.appointments.map(id => state.appointments[id]) : [];
 };
 
+// Retrieve interview object from state with interview id
 export function getInterview(state, interview) {
   if(interview) {
     const interviewObj = {...interview};

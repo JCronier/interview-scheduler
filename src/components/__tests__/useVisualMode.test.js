@@ -1,5 +1,6 @@
-import { renderHook, act } from "@testing-library/react-hooks";
+// useVisualMode.test
 
+import { renderHook, act } from "@testing-library/react-hooks";
 import useVisualMode from "/home/jordan/lighthouse/projects/interview-scheduler/src/hooks/useVisualMode.js";
 
 const FIRST = "FIRST";

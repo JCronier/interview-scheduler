@@ -1,3 +1,7 @@
+// Header.js
+
+// Appointment header with time slots
+
 import React from "react";
 
 export default function Header(props) {

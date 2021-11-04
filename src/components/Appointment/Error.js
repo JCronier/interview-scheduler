@@ -1,3 +1,7 @@
+// Error.js
+
+// Shows an error when there is a problem with saving/cancelling an appointment
+
 import React from "react";
 
 export default function Error(props) {

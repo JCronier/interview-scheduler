@@ -1,3 +1,7 @@
+// DayList.js
+
+// Contains the days list in the nav bar
+
 import React from "react";
 import DayListItem from "./DayListItem";
 

@@ -1,3 +1,7 @@
+// updateSpots.js
+
+// Updates the number of spots available
+
 export default function updateSpots (state, appointments) {
   const dayIndex = state.days.findIndex(day => day.name === state.day);
   const day = state.days[dayIndex];
@@ -8,6 +12,7 @@ export default function updateSpots (state, appointments) {
     !appointments[id].interview && spots++;
   })
 
+  // Create new days array without mutating the original state
   const days = [...state.days];
   days.splice(dayIndex, 1, { ...day, spots });
 

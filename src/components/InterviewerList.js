@@ -1,9 +1,14 @@
+// InterviewList.js
+
+// Shows the appointment list in 
+
 import React from "react";
 import InterviewerListItem from "./InterviewerListItem";
 
 import "./InterviewerList.scss";
 
 export default function InterviewerList(props) {
+  // array of appointments
   const interviewers = props.interviewers.map(interviewer => {
     return (
       <InterviewerListItem

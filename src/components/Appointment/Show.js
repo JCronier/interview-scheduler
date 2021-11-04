@@ -1,3 +1,7 @@
+// Show.js
+
+// Shows a booked interview in the correct timeslot
+
 import React from "react";
 
 export default function Show(props) {
@@ -27,5 +31,5 @@ export default function Show(props) {
         </section>
       </section>
     </main>
-  )
+  );
 }

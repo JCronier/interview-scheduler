@@ -1,10 +1,11 @@
-import React, { Fragment } from "react";
+// stories/index.js
 
+// Storybook testing file
+
+import React, { Fragment } from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-
 import "index.scss";
-
 import Button from "components/Button";
 import DayListItem from "../src/components/DayListItem";
 import DayList from "../src/components/DayList";
