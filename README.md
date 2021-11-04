@@ -1,5 +1,5 @@
 # Interview Scheduler
-### A React app that where a user can schedule, edit and delete interview appointments.
+#### A React app that where a user can schedule, edit and delete interview appointments.
 
 !["Scheduler Show"](https://github.com/fr3chtoa45t/interview-scheduler/blob/d56c73b02d285d160e9ca435ed5fad74df400ca2/public/docs/show.png)
 
@@ -22,3 +22,14 @@ npm start
 ```
 
 Enjoy using my app!
+
+## Dependencies
+* React
+* Axios
+* Classnames
+
+## Testing done with:
+* Jest
+* Storybook
+* Cypress
+* React Testing Library
