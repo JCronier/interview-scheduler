@@ -5,6 +5,7 @@
 import React from "react";
 import classNames from "classnames";
 import "../styles/DayListItem.scss";
+import { NavLink } from "react-router-dom";
 
 export default function DayListItem(props) {
   // Shows spots remaining
@@ -21,13 +22,13 @@ export default function DayListItem(props) {
   })
 
   return (
-    <li
+    <NavLink
+      to={`days/${props.name}`}
       className={dayClass}
-      onClick={() => props.setDay(props.name)}
       data-testid="day"
     >
       <h2 className="text--regular">{props.name}</h2>
       <h3>{formatSpots(props.spots)}</h3>
-    </li>
+    </NavLink>
   );
 }

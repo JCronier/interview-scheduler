@@ -9,13 +9,12 @@ import reducer from "../reducers/reducer";
 
 export default function useApplicationData() {
   const [state, dispatch] = useReducer(reducer, {
-    day: "Monday",
     days: [],
     appointments: {},
     interviewers: {}
   });
 
-  function bookInterview(id, interview) {
+  function bookInterview(id, interview, day) {
     // Grab appointment object from state
     const appointment = {
       ...state.appointments[id],
@@ -30,12 +29,12 @@ export default function useApplicationData() {
 
     return axios.put(`/api/appointments/${id}`, { ...appointment })
       .then(() => {
-        const newDays = updateSpots(state, appointments);
+        const newDays = updateSpots(state, appointments, day);
         dispatch({ type: "SET_INTERVIEW", value: { appointments, days: newDays }});
-      });
+      }).catch((e) => console.log(e.message));
   }
 
-  function cancelInterview(id) {
+  function cancelInterview(id, day) {
     // Grab appointment object from state
     const appointment = {
       ...state.appointments[id],
@@ -50,13 +49,13 @@ export default function useApplicationData() {
 
     return axios.delete(`/api/appointments/${id}`)
       .then(() => {
-        const newDays = updateSpots(state, appointments);
+        const newDays = updateSpots(state, appointments, day);
+        console.log("then")
         dispatch({ type: "SET_INTERVIEW", value: { appointments, days: newDays }});
-      });
+      }).catch((e) => console.log(e.message));
   }
 
   // Update
-  const setDay = day => dispatch({ type: "SET_DAY", value: { day } });
   const setData = all => {
     const days = all[0].data;
     const appointments = all[1].data;
@@ -78,7 +77,6 @@ export default function useApplicationData() {
 
   return {
     state,
-    setDay,
     bookInterview,
     cancelInterview
   }

@@ -3,64 +3,45 @@
 // Application component
 
 import React from "react";
-import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "../helpers/selectors";
+import { useLocation } from "react-router-dom";
 import useApplicationData from "../hooks/useApplicationData"
 import DayList from "./DayList";
-import Appointment from "./Appointment";
+import DailyAppointments from "./DailyAppointments";
 import "../styles/Application.scss";
+
+// Images
 
 export default function Application() {
   // Custom state hook
   const {
-    state,
-    setDay,
-    bookInterview,
-    cancelInterview
+    state
   } = useApplicationData();
 
-  const dailyInterviewers = getInterviewersForDay(state, state.day);
-
-  // Render appointments
-  const dailyAppointments = getAppointmentsForDay(state, state.day).map(appointment => {
-    const interview = getInterview(state, appointment.interview);
-    return (
-      <Appointment
-        key={appointment.id}
-        id={appointment.id}
-        time={appointment.time}
-        interview={interview}
-        interviewers={dailyInterviewers}
-        bookInterview={bookInterview}
-        cancelInterview={cancelInterview}
-      />
-    )
-  });
+  const location = useLocation();
 
   return (
     <main className="layout">
       <section className="sidebar">
         <img
           className="sidebar--centered"
-          src="images/logo.png"
+          src="http://localhost:8000/images/logo.png"
           alt="Interview Scheduler"
         />
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
           <DayList
             days={state.days}
-            value={state.day}
-            onChange={setDay}
+            value={location.day}
           />
         </nav>
         <img
           className="sidebar__lhl sidebar--centered"
-          src="images/lhl.png"
+          src="http://localhost:8000/images/lhl.png"
           alt="Lighthouse Labs"
         />
       </section>
       <section className="schedule">
-        {dailyAppointments}
-        <Appointment key="last" time="5pm" />
+        {<DailyAppointments />}
       </section>
     </main>
   );

@@ -2,8 +2,8 @@
 
 // Updates the number of spots available
 
-export default function updateSpots (state, appointments) {
-  const dayIndex = state.days.findIndex(day => day.name === state.day);
+export default function updateSpots (state, appointments, dayName) {
+  const dayIndex = state.days.findIndex(day => day.name === dayName);
   const day = state.days[dayIndex];
   let spots = 0;
 

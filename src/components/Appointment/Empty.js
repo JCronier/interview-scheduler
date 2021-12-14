@@ -10,7 +10,7 @@ export default function Empty(props) {
       <img
         onClick={props.onAdd}
         className="appointment__add-button"
-        src="images/add.png"
+        src="http://localhost:8000/images/add.png"
         alt="Add"
       />
     </main>
