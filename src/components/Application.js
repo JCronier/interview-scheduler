@@ -3,7 +3,7 @@
 // Application component
 
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useApplicationData from "../hooks/useApplicationData"
 import DayList from "./DayList";
 import DailyAppointments from "./DailyAppointments";
@@ -13,13 +13,9 @@ import "../styles/Application.scss";
 
 export default function Application() {
   // Custom state hook
-  const {
-    state
-  } = useApplicationData();
+  const { state } = useApplicationData();
 
-  console.log("days: ", state.days)
-
-  const location = useLocation();
+  const params = useParams();
 
   return (
     <main className="layout">
@@ -32,8 +28,7 @@ export default function Application() {
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
           <DayList
-            days={state.days}
-            value={location.day}
+            value={params.day || "Monday"}
           />
         </nav>
         <img

@@ -3,23 +3,21 @@
 // Contains the days list in the nav bar
 
 import React from "react";
-import { useParams } from "react-router-dom";
+import useApplicationData from "../hooks/useApplicationData";
 import DayListItem from "./DayListItem";
 
 export default function DayList(props) {
-  let params = useParams();
+  const { state } = useApplicationData();
 
-  const dayList = props.days.map(day => {
+  const dayList = state.days.map(day => {
     return (
       <DayListItem
         {...day}
         key={day.id}
-        selected={day.name === (params.day)}
+        selected={day.name === props.value}
       />
     );
   });
-
-  console.log("daylist")
 
   return (
     <ul>

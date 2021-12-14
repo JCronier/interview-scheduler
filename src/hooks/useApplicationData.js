@@ -29,10 +29,9 @@ export default function useApplicationData() {
 
     return axios.put(`/api/appointments/${id}`, { ...appointment })
       .then(() => {
-        console.log("HELLO THERE")
         const newDays = updateSpots(state, appointments, day);
         dispatch({ type: "SET_INTERVIEW", value: { appointments, days: newDays }});
-      }).catch((e) => console.log(e.message));
+      });
   }
 
   function cancelInterview(id, day) {
@@ -51,9 +50,8 @@ export default function useApplicationData() {
     return axios.delete(`/api/appointments/${id}`)
       .then(() => {
         const newDays = updateSpots(state, appointments, day);
-        console.log("then")
         dispatch({ type: "SET_INTERVIEW", value: { appointments, days: newDays }});
-      }).catch((e) => console.log(e.message));
+      });
   }
 
   // Update

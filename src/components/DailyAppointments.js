@@ -6,7 +6,7 @@ import Appointment from "./Appointment";
 import "../styles/Application.scss";
 
 
-export default function DailyAppointments(props) {
+export default function DailyAppointments() {
   let params = useParams();
   const {
     state,
