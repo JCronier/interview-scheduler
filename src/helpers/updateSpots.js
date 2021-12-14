@@ -12,6 +12,8 @@ export default function updateSpots (state, appointments, dayName) {
     !appointments[id].interview && spots++;
   })
 
+  console.log(spots)
+
   // Create new days array without mutating the original state
   const days = [...state.days];
   days.splice(dayIndex, 1, { ...day, spots });

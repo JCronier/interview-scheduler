@@ -29,6 +29,7 @@ export default function useApplicationData() {
 
     return axios.put(`/api/appointments/${id}`, { ...appointment })
       .then(() => {
+        console.log("HELLO THERE")
         const newDays = updateSpots(state, appointments, day);
         dispatch({ type: "SET_INTERVIEW", value: { appointments, days: newDays }});
       }).catch((e) => console.log(e.message));

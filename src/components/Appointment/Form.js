@@ -3,7 +3,6 @@
 // Allows user to create and edit an interview slot
 
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
 import Button from "../Button";
 import InterviewerList from "../InterviewerList";
 
@@ -11,8 +10,6 @@ export default function Form(props) {
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");
-
-  const location = useLocation();
 
   // reset the form data
   const reset = function () {
@@ -41,7 +38,7 @@ export default function Form(props) {
     }
 
     setError("");
-    props.onSave(student, interviewer, location.day);
+    props.onSave(student, interviewer);
   };
 
   return (

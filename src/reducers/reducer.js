@@ -12,7 +12,6 @@ export default function reducer(state, action) {
         interviewers
        };
     case SET_INTERVIEW:
-      console.log(appointments)
       return {
         ...state,
         appointments,

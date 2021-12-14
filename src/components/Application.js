@@ -17,6 +17,8 @@ export default function Application() {
     state
   } = useApplicationData();
 
+  console.log("days: ", state.days)
+
   const location = useLocation();
 
   return (

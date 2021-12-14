@@ -14,10 +14,12 @@ export default function DayList(props) {
       <DayListItem
         {...day}
         key={day.id}
-        selected={day.name === (params.day || "Monday")}
+        selected={day.name === (params.day)}
       />
     );
   });
+
+  console.log("daylist")
 
   return (
     <ul>
