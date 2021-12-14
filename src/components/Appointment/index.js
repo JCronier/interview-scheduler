@@ -12,6 +12,7 @@ import Confirm from "./Confirm";
 import Error from "./Error";
 import useVisualMode from "../../hooks/useVisualMode";
 import "./Appointment.scss"
+import { useLocation } from "react-router-dom";
 
 export default function Appointment(props) {
   // View mode constants
@@ -29,7 +30,9 @@ export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(props.interview ? SHOW : EMPTY);
   const appointmentId = props.id;
 
-  function save(name, interviewer) {
+  const location = useLocation();
+
+  function save(name, interviewer, day) {
     const interview = {
       student: name,
       interviewer
@@ -39,7 +42,7 @@ export default function Appointment(props) {
     transition(SAVING, true);
 
     // Axios call to api server
-    props.bookInterview(appointmentId, interview)
+    props.bookInterview(appointmentId, interview, day)
       .then(() => {
         transition(SHOW);
       })
@@ -48,13 +51,13 @@ export default function Appointment(props) {
       })
   }
 
-  function deleteInterview(id) {
+  function deleteInterview(id, day) {
 
     // Show status deleting
     transition(DELETING, true);
 
     // Axios call to api server
-    props.cancelInterview(id)
+    props.cancelInterview(id, day)
       .then(() => {
         transition(EMPTY);
       })
