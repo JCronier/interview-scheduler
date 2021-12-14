@@ -13,7 +13,7 @@ import "../styles/Application.scss";
 
 export default function Application() {
   // Custom state hook
-  const { state } = useApplicationData();
+  const appData = useApplicationData();
 
   const params = useParams();
 
@@ -28,6 +28,7 @@ export default function Application() {
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
           <DayList
+            days={appData.state.days}
             value={params.day || "Monday"}
           />
         </nav>
@@ -37,9 +38,7 @@ export default function Application() {
           alt="Lighthouse Labs"
         />
       </section>
-      <section className="schedule">
-        {<DailyAppointments />}
-      </section>
+      {<DailyAppointments appData={appData} />}
     </main>
   );
 }

@@ -6,13 +6,13 @@ import Appointment from "./Appointment";
 import "../styles/Application.scss";
 
 
-export default function DailyAppointments() {
+export default function DailyAppointments(props) {
   let params = useParams();
   const {
     state,
     bookInterview,
     cancelInterview
-  } = useApplicationData();
+  } = props.appData;
 
   const dailyInterviewers = getInterviewersForDay(state, params.day);
 
