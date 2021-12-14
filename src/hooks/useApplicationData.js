@@ -2,12 +2,13 @@
 
 // Custom hook to keep track of interview data
 
-import { useState, useEffect } from "react";
+import { useEffect, useReducer } from "react";
 import axios from "axios";
 import updateSpots from "../helpers/updateSpots";
+import reducer from "../reducers/reducer";
 
 export default function useApplicationData() {
-  const [state, setState] = useState({
+  const [state, dispatch] = useReducer(reducer, {
     day: "Monday",
     days: [],
     appointments: {},
@@ -30,7 +31,7 @@ export default function useApplicationData() {
     return axios.put(`/api/appointments/${id}`, { ...appointment })
       .then(() => {
         const newDays = updateSpots(state, appointments);
-        setState(prev => ({ ...prev, appointments, days:newDays }));
+        dispatch({ type: "SET_INTERVIEW", value: { appointments, days: newDays }});
       });
   }
 
@@ -50,17 +51,17 @@ export default function useApplicationData() {
     return axios.delete(`/api/appointments/${id}`)
       .then(() => {
         const newDays = updateSpots(state, appointments);
-        setState(prev => ({ ...prev, appointments, days: newDays }));
+        dispatch({ type: "SET_INTERVIEW", value: { appointments, days: newDays }});
       });
   }
 
   // Update
-  const setDay = day => setState(prev => ({ ...prev, day }));
+  const setDay = day => dispatch({ type: "SET_DAY", value: { day } });
   const setData = all => {
     const days = all[0].data;
     const appointments = all[1].data;
     const interviewers = all[2].data;
-    setState(prev => ({ ...prev, days, appointments, interviewers }));
+    dispatch(({ type: "SET_APPLICATION_DATA", value: {  days, appointments, interviewers }}));
   };
 
   // Get app data after app renders
