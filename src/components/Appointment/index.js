@@ -13,6 +13,7 @@ import Error from "./Error";
 import useVisualMode from "../../hooks/useVisualMode";
 import "./Appointment.scss"
 import { useParams } from "react-router-dom";
+import useApplicationData from "../../hooks/useApplicationData";
 
 export default function Appointment(props) {
   // View mode constants
@@ -32,6 +33,8 @@ export default function Appointment(props) {
 
   const params = useParams();
 
+  const { bookInterview, cancelInterview } = useApplicationData();
+
   function save(name, interviewer) {
     const interview = {
       student: name,
@@ -42,7 +45,7 @@ export default function Appointment(props) {
     transition(SAVING, true);
 
     // Axios call to api server
-    props.bookInterview(appointmentId, interview, params.day)
+    bookInterview(appointmentId, interview, params.day)
       .then(() => {
         transition(SHOW);
       })
@@ -57,7 +60,7 @@ export default function Appointment(props) {
     transition(DELETING, true);
 
     // Axios call to api server
-    props.cancelInterview(id, params.day)
+    cancelInterview(id, params.day)
       .then(() => {
         transition(EMPTY);
       })

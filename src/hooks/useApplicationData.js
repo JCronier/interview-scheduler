@@ -2,17 +2,15 @@
 
 // Custom hook to keep track of interview data
 
-import { useEffect, useReducer } from "react";
+import { useEffect, useContext } from "react";
 import axios from "axios";
 import updateSpots from "../helpers/updateSpots";
-import reducer from "../reducers/reducer";
+
+// Context
+import { AppContext } from "../context/ApplicationContext";
 
 export default function useApplicationData() {
-  const [state, dispatch] = useReducer(reducer, {
-    days: [],
-    appointments: {},
-    interviewers: {}
-  });
+  const { state, dispatch } = useContext(AppContext);
 
   function bookInterview(id, interview, day) {
     // Grab appointment object from state
@@ -75,7 +73,6 @@ export default function useApplicationData() {
   }, []);
 
   return {
-    state,
     bookInterview,
     cancelInterview
   }

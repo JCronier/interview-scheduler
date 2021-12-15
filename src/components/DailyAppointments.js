@@ -1,22 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "../helpers/selectors";
 import { useParams } from "react-router-dom";
-import useApplicationData from "../hooks/useApplicationData";
+import { AppContext } from "../context/ApplicationContext";
 import Appointment from "./Appointment";
 import "../styles/Application.scss";
 
 
-export default function DailyAppointments(props) {
+export default function DailyAppointments() {
   let params = useParams();
-  const {
-    state,
-    bookInterview,
-    cancelInterview
-  } = props.appData;
+  const { state } = useContext(AppContext);
 
-  const dailyInterviewers = getInterviewersForDay(state, params.day);
+  const currentDay = params.day || "Monday";
 
-  const dailyAppointments = getAppointmentsForDay(state, params.day).map(appointment => {
+  const dailyInterviewers = getInterviewersForDay(state, currentDay);
+
+  const dailyAppointments = getAppointmentsForDay(state, currentDay).map(appointment => {
     const interview = getInterview(state, appointment.interview);
     return (
       <Appointment
@@ -25,8 +23,6 @@ export default function DailyAppointments(props) {
         time={appointment.time}
         interview={interview}
         interviewers={dailyInterviewers}
-        bookInterview={bookInterview}
-        cancelInterview={cancelInterview}
       />
     )
   });

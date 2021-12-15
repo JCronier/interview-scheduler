@@ -15,7 +15,7 @@ ReactDOM.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<Application />}>
-        <Route path="days/:day" element={<Application />} />
+        <Route path=":day" element={<DailyAppointments />} />
       </Route>
       <Route
           path="*"

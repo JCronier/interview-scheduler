@@ -23,7 +23,7 @@ export default function DayListItem(props) {
 
   return (
     <NavLink
-      to={`days/${props.name}`}
+      to={`${props.name}`}
       className={dayClass}
       data-testid="day"
     >

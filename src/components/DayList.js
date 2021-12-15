@@ -2,12 +2,14 @@
 
 // Contains the days list in the nav bar
 
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../context/ApplicationContext";
 import DayListItem from "./DayListItem";
 
 export default function DayList(props) {
+  const { state } = useContext(AppContext);
 
-  const dayList = props.days.map(day => {
+  const dayList = state.days.map(day => {
     return (
       <DayListItem
         {...day}
